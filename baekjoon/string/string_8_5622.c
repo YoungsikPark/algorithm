@@ -11,4 +11,5 @@ int main()
         result += time[word[i]-'A']; //아스키 문자 A로 기준값을 잡는다. 소문자면 값이 달라질수 있음. 대문자변경식 넣을까?
     }
    printf("%d",result);
+   
 }
