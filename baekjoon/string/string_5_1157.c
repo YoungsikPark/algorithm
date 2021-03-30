@@ -1,29 +1,26 @@
 #include<stdio.h>
-#include<string.h>
 
+char s[1000005],ans;
+int num, cnt[26],maxi; // 컴파일러, 기본값에 따라 모든값이 0이다 
 int main(){
-    
-    char word[1000001]; //문자열만 가능  
-    int alphabetCnt[26]={0,}; // 알파벳 수자
-    int count[1000001]={0,};
-    int i,j,k = 0;
+    scanf("%s",s); 
 
-    scanf("%s",word);
-    for(int i = 0;word[i];i++){   
-        if(word[i]>='a' && word[i]<='z')
-        {
-            word[i] -= 32;
+    for(int i = 0; s[i] != NULL;i++){
+        if('a'<=s[i] && s[i]<='z'){
+            num = s[i]-'a'; // 알파벳의 개수만큼 뺴준다 
         }
-    } // 모든 입력받은 문자를 대문자로 변환 (소문자 아스키 코드값이 더 높음)
-
-    for(int i=0;word[i];i++){
-        for(int j=0;word[j];j++)
-        {
-            if(word[i]==word[j]){
-            count[i]++;
-            }
+        else{
+            num = s[i]-'A';
+        }
+        cnt[num]++; // 같은 알파벳이 나오게 되면 바로출력 
+        
+		if(maxi<cnt[num]){
+            maxi = cnt[num]; // 같은경우 대문자로 확인하기 위해 +A를 해준다 
+            ans = num+'A';
+        }
+        else if(maxi == cnt[num]){ //개수가 같을경우에는 ? 
+            ans = '?';  
         }
     }
-        
-    // 대문자중 중첩되어 있는 문자열을 확인
+    printf("%c",ans);
 }
