@@ -6,7 +6,7 @@ int main()
     scanf("%d", &n);
     for(int i = 0; i < n; i++)
     {
-        bool alphabet[26] = { 0 }, overlap = false; // false
+        char alphabet[26] = { 0 }, overlap = 0; // false
         char input[100];
         int aryNum;
         scanf("%s", &input);
@@ -19,12 +19,12 @@ int main()
             {
                 if(input[j-1] != input[j])
                 {
-                    overlap = true;
+                    overlap = 1;
                     break;
                 }
             }
             else
-                alphabet[aryNum] = true;
+                alphabet[aryNum] = 1;
             
         }
         if(!overlap) cnt++;
