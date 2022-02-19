@@ -1,66 +1,27 @@
-#include <stdio.h>
-
-int main()
-{
-	int n,ma,na_temp=0;
-	unsigned int na = 0;
-	int bong_3 = 3;
-	int bong_5 = 5;
+#include<stdio.h>
+int main(){
+	int user;
+	int count = 0; 
 	
-	while(1)
-	{
-		scanf("%d",&n);
-		if((3<=n)&&(n<=5000)){
+	scanf("%d", &user);
+	
+	while(user > 0){   // 배달 가야할 설탕이 0보다 작을때까지 반복문으로 설탕을 봉지에 포장한다
+		if(user % 5 == 0){    // 제일 먼저 5로 나눴을때 나머지가 0 이면 5의 배수이니 user 입력 값에서 5를 빼주고 count++
+			user -=5;
+			count++;
+		}
+		else if(user % 3 ==0){  // 5로 안나눠지고 3으로 나눠서 나머지가 0 이라면 3의 배수이니 user 에서 3을 빼주고 count++ 
+			user -=3;
+			count++;
+		}
+		else if(user > 5){  //   5나 3으로 나눠서 딱 떨어지지 않는다면 최솟값일수 있으니 일단 5를 빼줘서 계속 반복문을 돌려본다. 
+			user -=5;
+			count++;
+		}
+		else{
+			count = -1;  // 계속 빼줬는데 5의 배수나 3의 배수에 걸리지 않는다면 딱 맞아 떨어지지 않는 값이니 -1 출력 
 			break;
 		}
+		
 	}
-
-	if(n<5)
-	{
-        if(n % bong_3==0)
-        {
-          printf("1\r\n");  
-        }
-        else
-		printf("-1\r\n");
-	}
-	else
-	{
-		ma = n/bong_5; // 5로 나눈값의 목(첫번째 봉지) 
-		na = n%bong_5; // 5로 나눈값의 나머지 
-			
-		if((na<=3)&&(na!=0))  // 나머지가 3이하이고 0이 아닐때 1봉지로 끝나게 되니까  
-		{
-			na = 1;
-			printf("1 : %d\r\n",ma+na);
-		}
-		else     // 나머지가 3이상이고 0일때  (4일때만+1 계산하면 된다) 
-		{
-			printf("else\r\n");
-			if(na>3)
-			{
-				na = 2;	
-				printf("2: %d\r\n",ma+na);
-			} 
-			if(na==0)
-			{
-				printf("3: %d\r\n",ma);
-			}
-		}
-	}	
-}
-
-
-
-
-/*
-			na = na/bong_3; // 나머지값 나눠버림 
-			na_temp = na%bong_3; //  나머지를 나눈값의 나머지 
-			if((na_temp<=3)&&(na_temp!=0))  // 나머지를 나눈 몫이 0이 아니고, 3이상일때는 1봉지 더 필요하지  
-			{
-				printf("%d\r\n",ma+na+1);
-			}    
-			else{ // 나머지를 3으로 나눈 몫이 0이거나 3이하 일때 
-				printf("%d\r\n",ma+na);			
-			}
-*/
+	printf("%d", count);
